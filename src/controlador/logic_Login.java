@@ -1,32 +1,32 @@
 package controlador;
 
+import vista.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
-import vista.*;
+public class logic_Login {
 
-public class logic_Login implements ActionListener{
-	
-	private Login lb;
+    private Login loginView;
 
-	public logic_Login(Login lb) {
-		// TODO Auto-generated constructor stub
-		this.lb = lb;
-		listeners();
-	}
-	
-	private void listeners() {
-		lb.btn_test.addActionListener(this);
-	}
+    public logic_Login(Login loginView) {
+        this.loginView = loginView;
+        this.loginView.btn_test.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                authenticate();
+            }
+        });
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource() == lb.btn_test) {
-			System.out.println("Boton Test");
-			lb.dispatchEvent(new WindowEvent(lb, WindowEvent.WINDOW_CLOSING));
-		}
-	}
+    private void authenticate() {
+        String username = loginView.textFieldUsername.getText();
+        String password = new String(loginView.passwordField.getPassword());
 
+        if (username.equals("admin") && password.equals("12345")) {
+            JOptionPane.showMessageDialog(loginView, "Login exitoso!");
+        } else {
+            JOptionPane.showMessageDialog(loginView, "Usuario o contraseña incorrectos.");
+        }
+    }
 }
