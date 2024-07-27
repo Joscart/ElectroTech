@@ -217,9 +217,5 @@ public class ProductoGS extends JFrame {
         logic = new logic_ProductoGS(this);
     }
 
-<<<<<<< HEAD
 }
 
-=======
-}
->>>>>>> Anthony
