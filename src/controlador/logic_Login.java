@@ -28,7 +28,11 @@ public class logic_Login {
         String username = loginView.textFieldUsername.getText();
         String password = new String(loginView.passwordField.getPassword());
 
+<<<<<<< HEAD
         if (verificarUsuario(username, password)) {
+=======
+        if (username.equals("admin") && password.equals("12345")) {
+>>>>>>> 7aa060d71a6620cf8401934f43f81d7cc5219ce2
             loginView.textFieldUsername.setBackground(Color.GREEN);
             loginView.passwordField.setBackground(Color.GREEN);
             JOptionPane.showMessageDialog(loginView, "Login exitoso!");

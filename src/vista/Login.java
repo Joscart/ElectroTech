@@ -48,6 +48,10 @@ public class Login extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
 
+<<<<<<< HEAD
+=======
+        // Configuración del contentPane con un color pastel de fondo
+>>>>>>> 7aa060d71a6620cf8401934f43f81d7cc5219ce2
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(Color.WHITE);

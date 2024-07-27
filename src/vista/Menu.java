@@ -94,10 +94,13 @@ public class Menu extends JFrame {
                 System.out.println("Gestión Usuario clicked");
                 btnGestionUsuario.setBackground(Color.GREEN);
                 btnGestionUsuario.setForeground(Color.BLACK); // Mantener el texto visible
+<<<<<<< HEAD
                 
                 // Crear y mostrar la ventana UsuarioGS
                 UsuarioGS usuarioGS = new UsuarioGS();
                 usuarioGS.setVisible(true);
+=======
+>>>>>>> 7aa060d71a6620cf8401934f43f81d7cc5219ce2
             }
         });
         contentPane.add(btnGestionUsuario);
@@ -117,4 +120,3 @@ public class Menu extends JFrame {
         contentPane.add(btnGestionProveedores);
     }
 }
-
