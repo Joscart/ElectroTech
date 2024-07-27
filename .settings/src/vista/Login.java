@@ -47,36 +47,33 @@ public class Login extends JFrame {
     public Login() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
-
-        // Configuración del contentPane con un color pastel de fondo
-        contentPane = new JPanel();
+        
+        // Cambiar contentPane para usar BackgroundPanel con la ruta de la imagen
+        contentPane = new BackgroundPanel("C:\\Users\\antho\\OneDrive\\Escritorio\\recursos\\LOGIN.jpg"); // Asegúrate de especificar la ruta correcta a tu imagen
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(Color.WHITE);
         setContentPane(contentPane);
 
         JLabel lblLogin = new JLabel("Login");
         lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
         lblLogin.setFont(new Font("Tahoma", Font.BOLD, 22));
-        lblLogin.setForeground(Color.decode("#8000FF"));
+        lblLogin.setForeground(Color.BLACK);
 
-        JLabel lblUsername = new JLabel("Usuario:");
+        RoundedLabel lblUsername = new RoundedLabel("Usuario:", new Color(0, 0, 0, 0)); // Cornflower Blue
         lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblUsername.setForeground(Color.decode("#0000FF"));
+        lblUsername.setForeground(Color.BLACK);
 
         textFieldUsername = new JTextField();
         textFieldUsername.setColumns(10);
 
-        JLabel lblPassword = new JLabel("Contraseña:");
+        RoundedLabel lblPassword = new RoundedLabel("Contraseña:", new Color(0, 0, 0, 0)); // Cornflower Blue
         lblPassword.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblPassword.setForeground(Color.decode("#0000FF"));
+        lblPassword.setForeground(Color.BLACK);
 
         passwordField = new JPasswordField();
         passwordField.setColumns(10);
 
         btn_test = new JButton("Login");
         btn_test.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_test.setBackground(Color.decode("#03C03C"));
-        btn_test.setForeground(Color.WHITE);
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
