@@ -66,7 +66,7 @@ public class UsuarioGS extends JFrame {
         panelBuscar.add(lblBuscar);
 
         textFieldBuscar = new JTextField();
-        textFieldBuscar.setBounds(180, 15, 200, 25);
+		textFieldBuscar.setBounds(173, 15, 200, 25);
         textFieldBuscar.setBackground(Color.WHITE); // Fondo blanco para el campo de búsqueda
         textFieldBuscar.setForeground(Color.BLACK); // Texto negro
         panelBuscar.add(textFieldBuscar);

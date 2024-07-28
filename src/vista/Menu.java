@@ -42,25 +42,28 @@ public class Menu extends JFrame {
     public Menu() {
         setTitle("Sistema de Gestión de Empleados");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        contentPane = new JPanel();
+        setBounds(500, 150, 450, 340);
+        
+        contentPane= new BackgroundPanel("src/recursos/imagenes/menu.jpg");
+
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(new Color(240, 248, 255)); // Color pastel de fondo
+
+
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JLabel lblTitle = new JLabel("Menú Principal");
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
+        lblTitle.setFont(new Font("Unispace", Font.BOLD, 20));
         lblTitle.setBounds(50, 20, 350, 30);
-        lblTitle.setForeground(Color.decode("#8000FF"));
+        lblTitle.setForeground(Color.decode("#3a7eb5"));
         contentPane.add(lblTitle);
 
-        JButton btnVentana = new JButton("VENTA");
-        btnVentana.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        RoundedButton btnVentana = new RoundedButton("VENTA");
+        btnVentana.setFont(new Font("Unispace", Font.BOLD, 18));
         btnVentana.setBounds(50, 70, 350, 40);
-        btnVentana.setBackground(Color.decode("#03C03C"));
-        btnVentana.setForeground(Color.BLACK); // Color de texto ajustado para mejor visibilidad
+        btnVentana.setBackground(Color.decode("#8b4d86"));
+        btnVentana.setForeground(new Color(0, 0, 0)); // Color de texto ajustado para mejor visibilidad
         btnVentana.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Ventana clicked");
@@ -70,10 +73,10 @@ public class Menu extends JFrame {
         });
         contentPane.add(btnVentana);
 
-        JButton btnGestionProducto = new JButton("GESTIÓN PRODUCTO");
-        btnGestionProducto.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        RoundedButton btnGestionProducto = new RoundedButton("GESTIÓN PRODUCTO");
+        btnGestionProducto.setFont(new Font("Unispace", Font.BOLD, 18));
         btnGestionProducto.setBounds(50, 120, 350, 40);
-        btnGestionProducto.setBackground(Color.decode("#03C03C"));
+        btnGestionProducto.setBackground(Color.decode("#3a84b4"));
         btnGestionProducto.setForeground(Color.BLACK); // Color de texto ajustado para mejor visibilidad
         btnGestionProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -84,10 +87,10 @@ public class Menu extends JFrame {
         });
         contentPane.add(btnGestionProducto);
 
-        JButton btnGestionUsuario = new JButton("GESTIÓN USUARIO");
-        btnGestionUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        RoundedButton btnGestionUsuario = new RoundedButton("GESTIÓN USUARIO");
+        btnGestionUsuario.setFont(new Font("Unispace", Font.BOLD, 18));
         btnGestionUsuario.setBounds(50, 170, 350, 40);
-        btnGestionUsuario.setBackground(Color.decode("#03C03C"));
+        btnGestionUsuario.setBackground(Color.decode("#7cb461"));
         btnGestionUsuario.setForeground(Color.BLACK); // Color de texto ajustado para mejor visibilidad
         btnGestionUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -102,10 +105,10 @@ public class Menu extends JFrame {
         });
         contentPane.add(btnGestionUsuario);
 
-        JButton btnGestionProveedores = new JButton("GESTIÓN PROVEEDORES");
-        btnGestionProveedores.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        RoundedButton btnGestionProveedores = new RoundedButton("GESTIÓN PROVEEDORES");
+        btnGestionProveedores.setFont(new Font("Unispace", Font.BOLD, 18));
         btnGestionProveedores.setBounds(50, 220, 350, 40);
-        btnGestionProveedores.setBackground(Color.decode("#03C03C"));
+        btnGestionProveedores.setBackground(Color.decode("#b8d69e"));
         btnGestionProveedores.setForeground(Color.BLACK); // Color de texto ajustado para mejor visibilidad
         btnGestionProveedores.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
