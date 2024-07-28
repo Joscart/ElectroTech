@@ -3,10 +3,7 @@ package controlador;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
 import vista.Login;
-<<<<<<< HEAD
 import vista.UsuarioGS;
-=======
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
 import vista.Menu;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -48,15 +45,9 @@ public class logic_Login {
         String username = loginView.textFieldUsername.getText();
         String password = new String(loginView.passwordField.getPassword());
 
-<<<<<<< HEAD
+
         if (verificarUsuario(username, password)) {
-=======
-<<<<<<< HEAD
-        if (verificarUsuario(username, password)) {
-=======
-        if (username.equals("admin") && password.equals("12345")) {
->>>>>>> 7aa060d71a6620cf8401934f43f81d7cc5219ce2
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
+
             loginView.textFieldUsername.setBackground(Color.GREEN);
             loginView.passwordField.setBackground(Color.GREEN);
             JOptionPane.showMessageDialog(loginView, "Login exitoso!");
@@ -72,7 +63,6 @@ public class logic_Login {
     }
 
     private boolean verificarUsuario(String usuario, String contrasena) {
-<<<<<<< HEAD
         Usuario user = new Usuario();
         user.setNombre(usuario);
         user.setClave(contrasena);  // Se asegurará de codificar la clave dentro de la clase Usuario
@@ -102,20 +92,6 @@ public class logic_Login {
         } else {
             JOptionPane.showMessageDialog(usuarioGSView, "Error al agregar el usuario.");
         }
-=======
-        try (BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes[0].equals(usuario) && partes[1].equals(contrasena)) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
     }
 }
 

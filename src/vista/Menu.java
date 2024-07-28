@@ -94,19 +94,10 @@ public class Menu extends JFrame {
                 System.out.println("Gestión Usuario clicked");
                 btnGestionUsuario.setBackground(Color.GREEN);
                 btnGestionUsuario.setForeground(Color.BLACK); // Mantener el texto visible
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
                 
                 // Crear y mostrar la ventana UsuarioGS
                 UsuarioGS usuarioGS = new UsuarioGS();
                 usuarioGS.setVisible(true);
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 7aa060d71a6620cf8401934f43f81d7cc5219ce2
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
             }
         });
         contentPane.add(btnGestionUsuario);

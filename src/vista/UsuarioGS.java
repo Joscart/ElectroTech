@@ -16,11 +16,8 @@ import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-<<<<<<< HEAD
-
 import controlador.logic_Login;
-=======
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
+
 
 public class UsuarioGS extends JFrame {
 
@@ -33,10 +30,8 @@ public class UsuarioGS extends JFrame {
     private JPasswordField passwordFieldContrasena;
 
     private static final String FILE_PATH = "usuarios.txt";
-<<<<<<< HEAD
     public JButton btnAgregarUsuario; // Renombrado para mantener consistencia
-=======
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
+
 
     /**
      * Create the frame.
@@ -62,11 +57,8 @@ public class UsuarioGS extends JFrame {
         btnAtras.setBounds(0, 10, 100, 30);
         btnAtras.setBackground(new Color(240, 128, 128)); // Color coral
         btnAtras.setForeground(Color.BLACK); // Texto negro
-<<<<<<< HEAD
         btnAtras.addActionListener(new ActionListener() {
-=======
-        btnAtras.addActionListener((ActionListener) new ActionListener() {
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
+
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Cierra la ventana actual
             }
@@ -121,28 +113,13 @@ public class UsuarioGS extends JFrame {
         });
         panelBotones.add(btnEditar);
 
-<<<<<<< HEAD
         btnAgregarUsuario = new JButton("Agregar Usuario"); // Renombrado
         btnAgregarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnAgregarUsuario.setBounds(210, 10, 180, 40);
         btnAgregarUsuario.setBackground(new Color(100, 149, 237)); // Color azul pálido
         btnAgregarUsuario.setForeground(Color.BLACK); // Texto negro
         panelBotones.add(btnAgregarUsuario);
-=======
-        JButton btnAgregar = new JButton("Agregar");
-        btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnAgregar.setBounds(210, 10, 180, 40);
-        btnAgregar.setBackground(new Color(100, 149, 237)); // Color azul pálido
-        btnAgregar.setForeground(Color.BLACK); // Texto negro
-        btnAgregar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Agregar clicked");
-                AgregarUsuario agregarUsuario = new AgregarUsuario();
-                agregarUsuario.setVisible(true);
-            }
-        });
-        panelBotones.add(btnAgregar);
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
+
 
         JButton btnNuevo = new JButton("Nuevo");
         btnNuevo.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -331,10 +308,8 @@ public class UsuarioGS extends JFrame {
         SwingUtilities.invokeLater(() -> {
             UsuarioGS frame = new UsuarioGS();
             frame.setVisible(true);
-<<<<<<< HEAD
             logic_Login logic = new logic_Login(frame); // Inicializa la lógica de login para UsuarioGS
-=======
->>>>>>> 38ddf8f8adea5cfe9cfb5a909ae188b1fb48237f
+
         });
     }
 }
