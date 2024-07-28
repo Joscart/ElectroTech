@@ -8,9 +8,6 @@ import vista.Menu;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class logic_Login {
@@ -45,9 +42,7 @@ public class logic_Login {
         String username = loginView.textFieldUsername.getText();
         String password = new String(loginView.passwordField.getPassword());
 
-
         if (verificarUsuario(username, password)) {
-
             loginView.textFieldUsername.setBackground(Color.GREEN);
             loginView.passwordField.setBackground(Color.GREEN);
             JOptionPane.showMessageDialog(loginView, "Login exitoso!");

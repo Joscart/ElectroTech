@@ -117,3 +117,4 @@ public class Menu extends JFrame {
         contentPane.add(btnGestionProveedores);
     }
 }
+

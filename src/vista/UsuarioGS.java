@@ -6,18 +6,13 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import controlador.logic_Login;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import modelo.Usuario;
+import modelo.UsuarioDAO;
 
 public class UsuarioGS extends JFrame {
 
@@ -28,15 +23,15 @@ public class UsuarioGS extends JFrame {
     private DefaultListModel<String> listModel;
     private JTextField textFieldUsuario;
     private JPasswordField passwordFieldContrasena;
-
-    private static final String FILE_PATH = "usuarios.txt";
+    private UsuarioDAO usuarioDAO;
     public JButton btnAgregarUsuario; // Renombrado para mantener consistencia
-
 
     /**
      * Create the frame.
      */
     public UsuarioGS() {
+        usuarioDAO = new UsuarioDAO();
+
         setTitle("Gestión de Usuarios");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 500);
@@ -58,15 +53,9 @@ public class UsuarioGS extends JFrame {
         btnAtras.setBackground(new Color(240, 128, 128)); // Color coral
         btnAtras.setForeground(Color.BLACK); // Texto negro
         btnAtras.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Cierra la ventana actual
             }
-
-			public void actionPerformed1(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
         });
         panelBuscar.add(btnAtras);
 
@@ -120,7 +109,6 @@ public class UsuarioGS extends JFrame {
         btnAgregarUsuario.setForeground(Color.BLACK); // Texto negro
         panelBotones.add(btnAgregarUsuario);
 
-
         JButton btnNuevo = new JButton("Nuevo");
         btnNuevo.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnNuevo.setBounds(10, 70, 180, 40);
@@ -128,7 +116,6 @@ public class UsuarioGS extends JFrame {
         btnNuevo.setForeground(Color.BLACK); // Texto negro
         btnNuevo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Nuevo clicked");
                 // Lógica para nuevo usuario
             }
         });
@@ -178,14 +165,26 @@ public class UsuarioGS extends JFrame {
         panelEdit.add(passwordFieldContrasena);
 
         // Agregar listener para actualizar campos de edición cuando se seleccione un usuario
-        listUsuarios.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                String usuarioSeleccionado = listUsuarios.getSelectedValue();
-                if (usuarioSeleccionado != null) {
-                    cargarUsuario(usuarioSeleccionado);
+        listUsuarios.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String usuarioSeleccionado = listUsuarios.getSelectedValue();
+                    if (usuarioSeleccionado != null) {
+                        cargarUsuario(usuarioSeleccionado);
+                    }
                 }
             }
         });
+
+        cargarUsuarios(); // Cargar usuarios al iniciar
+    }
+
+    private void cargarUsuarios() {
+        List<Usuario> usuarios = usuarioDAO.getUsuarios();
+        listModel.clear();
+        for (Usuario usuario : usuarios) {
+            listModel.addElement(usuario.getNombre());
+        }
     }
 
     private void buscarUsuario() {
@@ -196,32 +195,22 @@ public class UsuarioGS extends JFrame {
         }
 
         listModel.clear();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes[0].contains(buscar)) {
-                    listModel.addElement(partes[0]);
-                }
+        List<Usuario> usuarios = usuarioDAO.getUsuarios();
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().contains(buscar)) {
+                listModel.addElement(usuario.getNombre());
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    private void cargarUsuario(String usuario) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes[0].equals(usuario)) {
-                    textFieldUsuario.setText(partes[0]);
-                    passwordFieldContrasena.setText(partes[1]);
-                    return;
-                }
+    private void cargarUsuario(String usuarioNombre) {
+        List<Usuario> usuarios = usuarioDAO.getUsuarios();
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equals(usuarioNombre)) {
+                textFieldUsuario.setText(usuario.getNombre());
+                passwordFieldContrasena.setText(usuario.getClave());
+                return;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         // Si el usuario no se encuentra, limpia los campos
         textFieldUsuario.setText("");
@@ -243,32 +232,17 @@ public class UsuarioGS extends JFrame {
             return;
         }
 
-        List<String> lineas = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes[0].equals(usuarioSeleccionado)) {
-                    lineas.add(nuevoUsuario + "," + nuevaContrasena);
-                } else {
-                    lineas.add(linea);
-                }
+        List<Usuario> usuarios = usuarioDAO.getUsuarios();
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equals(usuarioSeleccionado)) {
+                usuario.setNombre(nuevoUsuario);
+                usuario.setClave(nuevaContrasena);
+                usuarioDAO.actualizarUsuario(usuario);
+                cargarUsuarios();
+                JOptionPane.showMessageDialog(this, "Usuario actualizado exitosamente.");
+                return;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            for (String linea : lineas) {
-                writer.write(linea);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JOptionPane.showMessageDialog(this, "Usuario editado con éxito.");
-        buscarUsuario(); // Actualiza la lista de usuarios
     }
 
     private void eliminarUsuario() {
@@ -278,39 +252,30 @@ public class UsuarioGS extends JFrame {
             return;
         }
 
-        List<String> lineas = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (!partes[0].equals(usuarioSeleccionado)) {
-                    lineas.add(linea);
+        int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres eliminar este usuario?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            List<Usuario> usuarios = usuarioDAO.getUsuarios();
+            for (Usuario usuario : usuarios) {
+                if (usuario.getNombre().equals(usuarioSeleccionado)) {
+                    usuarioDAO.eliminarUsuario(usuario.getID());
+                    cargarUsuarios();
+                    JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente.");
+                    return;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            for (String linea : lineas) {
-                writer.write(linea);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JOptionPane.showMessageDialog(this, "Usuario eliminado con éxito.");
-        buscarUsuario(); // Actualiza la lista de usuarios
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            UsuarioGS frame = new UsuarioGS();
-            frame.setVisible(true);
-            logic_Login logic = new logic_Login(frame); // Inicializa la lógica de login para UsuarioGS
-
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    UsuarioGS frame = new UsuarioGS();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 }
-

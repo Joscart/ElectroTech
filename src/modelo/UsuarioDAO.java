@@ -88,8 +88,8 @@ public class UsuarioDAO {
                 claveCodificada, usuario.getRol(), usuario.getFechaCreacion().toString(), usuario.getID()));
     }
     
-    public synchronized boolean eliminarUsuario(int id) {
-        return con.setQuery(String.format("DELETE FROM usuario WHERE id_usuario = %d;", id));
+    public synchronized boolean eliminarUsuario(int i) {
+        return con.setQuery(String.format("DELETE FROM usuario WHERE id_usuario = %d;", i));
     }
 
     public void cerrarConexion() {
