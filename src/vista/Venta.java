@@ -45,7 +45,7 @@ public class Venta extends JFrame {
     public Venta() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 570, 386);
-        contentPane = new JPanel();
+        contentPane= new BackgroundPanel("src/recursos/imagenes/productosVS.jpg");
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(new Color(230, 230, 250)); // Light blue background
 

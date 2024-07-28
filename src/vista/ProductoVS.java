@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import javax.swing.BoxLayout;
 
 public class ProductoVS extends JPanel {
 
@@ -21,6 +22,7 @@ public class ProductoVS extends JPanel {
 	 * Create the panel.
 	 */
 	public ProductoVS() {
+		
 		setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		logic = new logic_ProductoVS(this);
 		setLayout(new BorderLayout(0, 0));
@@ -34,7 +36,7 @@ public class ProductoVS extends JPanel {
 		txt_buscar.setColumns(30);
 		
 		tbl_productos = new JTable();
-		add(tbl_productos, BorderLayout.CENTER);
+		add(tbl_productos);
 	}
 
 }

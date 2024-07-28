@@ -74,11 +74,11 @@ public class UsuarioGS extends JFrame {
         lblBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblBuscar.setBounds(110, 10, 60, 30);
         panelBuscar.add(lblBuscar);
-
-        textFieldBuscar = new JTextField();
-        textFieldBuscar.setBounds(180, 15, 200, 25);
-        panelBuscar.add(textFieldBuscar);
-        textFieldBuscar.setColumns(10);
+        
+                textFieldBuscar = new JTextField();
+                textFieldBuscar.setBounds(173, 15, 200, 25);
+                panelBuscar.add(textFieldBuscar);
+                textFieldBuscar.setColumns(10);
 
         JPanel panelBotones = new JPanel();
         panelBotones.setBounds(10, 70, 420, 120);

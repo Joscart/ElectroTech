@@ -46,76 +46,78 @@ public class Login extends JFrame {
      */
     public Login() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(500, 150, 550, 350);
 
-        // Configuración del contentPane con un color pastel de fondo
-        contentPane = new JPanel();
+        contentPane= new BackgroundPanel("src/recursos/imagenes/login.jpg");
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(Color.WHITE);
         setContentPane(contentPane);
 
         JLabel lblLogin = new JLabel("Login");
         lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-        lblLogin.setFont(new Font("Tahoma", Font.BOLD, 22));
-        lblLogin.setForeground(Color.decode("#8000FF"));
+        lblLogin.setFont(new Font("Unispace", Font.BOLD, 30));
+        lblLogin.setForeground(Color.decode("#7f00ff"));
 
         JLabel lblUsername = new JLabel("Usuario:");
-        lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblUsername.setForeground(Color.decode("#0000FF"));
+        lblUsername.setFont(new Font("Unispace", Font.BOLD, 18));
+        lblUsername.setForeground(new Color(192, 192, 192));
 
         textFieldUsername = new JTextField();
+        textFieldUsername.setFont(new Font("Tahoma", Font.PLAIN, 18));
         textFieldUsername.setColumns(10);
+        textFieldUsername.setBackground(Color.decode("#fbebd2"));
 
         JLabel lblPassword = new JLabel("Contraseña:");
-        lblPassword.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblPassword.setForeground(Color.decode("#0000FF"));
+        lblPassword.setFont(new Font("Unispace", Font.BOLD, 18));
+        lblPassword.setForeground(new Color(192, 192, 192));
 
         passwordField = new JPasswordField();
+        passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         passwordField.setColumns(10);
+        passwordField.setBackground(Color.decode("#fbebd2"));
 
-        btn_test = new JButton("Login");
-        btn_test.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_test.setBackground(Color.decode("#03C03C"));
-        btn_test.setForeground(Color.WHITE);
+        btn_test = new RoundedButton("Validar");
+        btn_test.setFont(new Font("Unispace", Font.PLAIN, 18));
+        btn_test.setBackground(Color.decode("#02c03c"));
+        btn_test.setForeground(new Color(0, 0, 0));
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-            gl_contentPane.createParallelGroup(Alignment.LEADING)
-                .addGroup(gl_contentPane.createSequentialGroup()
-                    .addGap(173)
-                    .addComponent(lblLogin)
-                    .addContainerGap(183, Short.MAX_VALUE))
-                .addGroup(gl_contentPane.createSequentialGroup()
-                    .addGap(75)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                        .addComponent(lblUsername)
-                        .addComponent(lblPassword))
-                    .addGap(18)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                        .addComponent(passwordField)
-                        .addComponent(textFieldUsername, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                    .addContainerGap(97, Short.MAX_VALUE))
-                .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                    .addContainerGap(185, Short.MAX_VALUE)
-                    .addComponent(btn_test)
-                    .addGap(170))
+        	gl_contentPane.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addGap(85)
+        					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        						.addComponent(lblUsername)
+        						.addComponent(lblPassword))
+        					.addGap(43)
+        					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        						.addComponent(textFieldUsername, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addGap(199)
+        					.addComponent(lblLogin))
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addGap(177)
+        					.addComponent(btn_test, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(61, Short.MAX_VALUE))
         );
         gl_contentPane.setVerticalGroup(
-            gl_contentPane.createParallelGroup(Alignment.LEADING)
-                .addGroup(gl_contentPane.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblLogin)
-                    .addGap(18)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                        .addComponent(lblUsername)
-                        .addComponent(textFieldUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18)
-                    .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                        .addComponent(lblPassword)
-                        .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18)
-                    .addComponent(btn_test)
-                    .addContainerGap(120, Short.MAX_VALUE))
+        	gl_contentPane.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addGap(35)
+        			.addComponent(lblLogin)
+        			.addGap(18)
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblUsername)
+        				.addComponent(textFieldUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(41)
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblPassword)
+        				.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(41)
+        			.addComponent(btn_test)
+        			.addContainerGap(53, Short.MAX_VALUE))
         );
         contentPane.setLayout(gl_contentPane);
 
