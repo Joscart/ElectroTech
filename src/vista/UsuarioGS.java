@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
+import controlador.logic_Login;
 
 public class UsuarioGS extends JFrame {
 
@@ -25,6 +26,9 @@ public class UsuarioGS extends JFrame {
     private JPasswordField passwordFieldContrasena;
     private UsuarioDAO usuarioDAO;
     public JButton btnAgregarUsuario; // Renombrado para mantener consistencia
+
+    // Nuevo campo para la instancia de logic_Login
+    private logic_Login loginLogic;
 
     /**
      * Create the frame.
@@ -109,18 +113,6 @@ public class UsuarioGS extends JFrame {
         btnAgregarUsuario.setForeground(Color.BLACK); // Texto negro
         panelBotones.add(btnAgregarUsuario);
 
-        JButton btnNuevo = new JButton("Nuevo");
-        btnNuevo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnNuevo.setBounds(10, 70, 180, 40);
-        btnNuevo.setBackground(new Color(100, 149, 237)); // Color azul pálido
-        btnNuevo.setForeground(Color.BLACK); // Texto negro
-        btnNuevo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para nuevo usuario
-            }
-        });
-        panelBotones.add(btnNuevo);
-
         JButton btnEliminar = new JButton("Eliminar");
         btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnEliminar.setBounds(210, 70, 180, 40);
@@ -177,6 +169,17 @@ public class UsuarioGS extends JFrame {
         });
 
         cargarUsuarios(); // Cargar usuarios al iniciar
+
+        // Crear una instancia de logic_Login con la referencia a UsuarioGS
+        loginLogic = new logic_Login(this);
+
+        // Asociar el ActionListener para el botón de agregar usuario
+        btnAgregarUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginLogic.agregarUsuario();
+            }
+        });
     }
 
     private void cargarUsuarios() {

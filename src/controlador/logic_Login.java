@@ -65,7 +65,7 @@ public class logic_Login {
         return autenticado != null;
     }
 
-    private void agregarUsuario() {
+    public void agregarUsuario() {
         // Recoger datos del nuevo usuario (esto podría ser mejorado con un formulario dedicado)
         String nombre = JOptionPane.showInputDialog(usuarioGSView, "Ingrese el nombre:");
         String nombresCompletos = JOptionPane.showInputDialog(usuarioGSView, "Ingrese los nombres completos:");
