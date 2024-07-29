@@ -53,14 +53,14 @@ public class ProductoDAO {
 	
 	public synchronized boolean agregarProducto(Producto producto) {
 		return con.setQuery(String.format(
-				"INSERT INTO producto (id_proveedor, nombre, descripcion, cantidad, precio) VALUES (%d, '%s', '%s', %d, %f);",
+				"INSERT INTO producto (id_proveedor, nombre, descripcion, cantidad, precio) VALUES (%d, '%s', '%s', %d, %s);",
 				producto.getIDProveedor(), producto.getNombre(), producto.getDescripcion(), producto.getCantidad(),
 				producto.getPrecio()));
 	}
 	
 	public synchronized boolean actualizarProducto(Producto producto) {
 		return con.setQuery(String.format(
-				"UPDATE producto SET id_proveedor = %d, nombre = '%s', descripcion = '%s', cantidad = %d, precio = %f WHERE id_producto = %d;",
+				"UPDATE producto SET id_proveedor = %d, nombre = '%s', descripcion = '%s', cantidad = %d, precio = %s WHERE id_producto = %d;",
 				producto.getIDProveedor(), producto.getNombre(), producto.getDescripcion(), producto.getCantidad(),
 				producto.getPrecio(), producto.getID()));
 	}

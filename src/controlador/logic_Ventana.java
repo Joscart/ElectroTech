@@ -5,11 +5,13 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 
+import modelo.Usuario;
 import vista.*;
 
 public class logic_Ventana implements WindowListener{
 	
 	private Ventana lb;
+	private Usuario usuario;
 
 	public logic_Ventana(Ventana lb) {
 		// TODO Auto-generated constructor stub
@@ -32,9 +34,11 @@ public class logic_Ventana implements WindowListener{
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
 		if (lb.frame instanceof Login) {
+			if (((Login) lb.frame).isLogin) {
             lb.frame = new Menu();
             listeners();
             lb.frame.setVisible(true);
+			}
 		}
 	}
 

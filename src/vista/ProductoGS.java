@@ -26,9 +26,17 @@ public class ProductoGS extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     public logic_ProductoGS logic;
-    private ProductoVS pn_productovs;
-    private JTextField textField;
-    private JTextField textField_1;
+    public ProductoVS pn_productovs;
+    public JTextField txt_nombre;
+    public JTextField txt_precio;
+    public JSpinner spn_cantidad;
+    public JTextPane txt_descripcion;
+    public JComboBox cbx_proveedor;
+    public RoundedButton btn_nuevo;
+    public RoundedButton btn_editar;
+    public RoundedButton btn_guardar;
+    public RoundedButton btn_eliminar;
+    public RoundedButton btn_atras;
 
     /**
      * Launch the application.
@@ -82,15 +90,15 @@ public class ProductoGS extends JFrame {
         gbc_lblNombre.gridy = 1;
         panel_1.add(lblNombre, gbc_lblNombre);
         
-        textField = new JTextField();
-        GridBagConstraints gbc_textField = new GridBagConstraints();
-        gbc_textField.gridwidth = 3;
-        gbc_textField.insets = new Insets(0, 0, 5, 5);
-        gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textField.gridx = 1;
-        gbc_textField.gridy = 2;
-        panel_1.add(textField, gbc_textField);
-        textField.setColumns(10);
+        txt_nombre = new JTextField();
+        GridBagConstraints gbc_txt_nombre = new GridBagConstraints();
+        gbc_txt_nombre.gridwidth = 3;
+        gbc_txt_nombre.insets = new Insets(0, 0, 5, 5);
+        gbc_txt_nombre.fill = GridBagConstraints.HORIZONTAL;
+        gbc_txt_nombre.gridx = 1;
+        gbc_txt_nombre.gridy = 2;
+        panel_1.add(txt_nombre, gbc_txt_nombre);
+        txt_nombre.setColumns(10);
         
         JLabel lblNewLabel_1 = new JLabel("Descripcion:");
         lblNewLabel_1.setFont(new Font("Unispace", Font.PLAIN, 15));
@@ -108,15 +116,15 @@ public class ProductoGS extends JFrame {
         gbc_horizontalStrut.gridy = 4;
         panel_1.add(horizontalStrut, gbc_horizontalStrut);
         
-        JTextPane textPane = new JTextPane();
-        textPane.setFont(new Font("Unispace", Font.PLAIN, 15));
-        GridBagConstraints gbc_textPane = new GridBagConstraints();
-        gbc_textPane.gridwidth = 3;
-        gbc_textPane.insets = new Insets(0, 0, 5, 5);
-        gbc_textPane.fill = GridBagConstraints.BOTH;
-        gbc_textPane.gridx = 1;
-        gbc_textPane.gridy = 4;
-        panel_1.add(textPane, gbc_textPane);
+        txt_descripcion = new JTextPane();
+        txt_descripcion.setFont(new Font("Unispace", Font.PLAIN, 15));
+        GridBagConstraints gbc_txt_descripcion = new GridBagConstraints();
+        gbc_txt_descripcion.gridwidth = 3;
+        gbc_txt_descripcion.insets = new Insets(0, 0, 5, 5);
+        gbc_txt_descripcion.fill = GridBagConstraints.BOTH;
+        gbc_txt_descripcion.gridx = 1;
+        gbc_txt_descripcion.gridy = 4;
+        panel_1.add(txt_descripcion, gbc_txt_descripcion);
         
         Component horizontalStrut_1 = Box.createHorizontalStrut(20);
         GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
@@ -134,12 +142,12 @@ public class ProductoGS extends JFrame {
         gbc_lblCantidad.gridy = 5;
         panel_1.add(lblCantidad, gbc_lblCantidad);
         
-        JSpinner spinner = new JSpinner();
-        GridBagConstraints gbc_spinner = new GridBagConstraints();
-        gbc_spinner.insets = new Insets(0, 0, 5, 5);
-        gbc_spinner.gridx = 2;
-        gbc_spinner.gridy = 5;
-        panel_1.add(spinner, gbc_spinner);
+        spn_cantidad = new JSpinner();
+        GridBagConstraints gbc_spn_cantidad = new GridBagConstraints();
+        gbc_spn_cantidad.insets = new Insets(0, 0, 5, 5);
+        gbc_spn_cantidad.gridx = 2;
+        gbc_spn_cantidad.gridy = 5;
+        panel_1.add(spn_cantidad, gbc_spn_cantidad);
         
         JLabel lblPrecio = new JLabel("Precio:");
         lblPrecio.setFont(new Font("Unispace", Font.PLAIN, 15));
@@ -151,14 +159,14 @@ public class ProductoGS extends JFrame {
         gbc_lblPrecio.gridy = 6;
         panel_1.add(lblPrecio, gbc_lblPrecio);
         
-        textField_1 = new JTextField();
-        GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-        gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-        gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textField_1.gridx = 2;
-        gbc_textField_1.gridy = 6;
-        panel_1.add(textField_1, gbc_textField_1);
-        textField_1.setColumns(10);
+        txt_precio = new JTextField();
+        GridBagConstraints gbc_txt_precio = new GridBagConstraints();
+        gbc_txt_precio.insets = new Insets(0, 0, 5, 5);
+        gbc_txt_precio.fill = GridBagConstraints.HORIZONTAL;
+        gbc_txt_precio.gridx = 2;
+        gbc_txt_precio.gridy = 6;
+        panel_1.add(txt_precio, gbc_txt_precio);
+        txt_precio.setColumns(10);
         
         JLabel lblProveedor = new JLabel("Proveedor:");
         lblProveedor.setFont(new Font("Unispace", Font.PLAIN, 15));
@@ -169,14 +177,14 @@ public class ProductoGS extends JFrame {
         gbc_lblProveedor.gridy = 7;
         panel_1.add(lblProveedor, gbc_lblProveedor);
         
-        JComboBox comboBox = new JComboBox();
-        GridBagConstraints gbc_comboBox = new GridBagConstraints();
-        gbc_comboBox.gridwidth = 3;
-        gbc_comboBox.insets = new Insets(0, 0, 0, 5);
-        gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-        gbc_comboBox.gridx = 1;
-        gbc_comboBox.gridy = 8;
-        panel_1.add(comboBox, gbc_comboBox);
+        cbx_proveedor = new JComboBox();
+        GridBagConstraints gbc_cbx_proveedor = new GridBagConstraints();
+        gbc_cbx_proveedor.gridwidth = 3;
+        gbc_cbx_proveedor.insets = new Insets(0, 0, 0, 5);
+        gbc_cbx_proveedor.fill = GridBagConstraints.HORIZONTAL;
+        gbc_cbx_proveedor.gridx = 1;
+        gbc_cbx_proveedor.gridy = 8;
+        panel_1.add(cbx_proveedor, gbc_cbx_proveedor);
         
         Box verticalBox = Box.createVerticalBox();
         contentPane.add(verticalBox, BorderLayout.EAST);
@@ -184,47 +192,52 @@ public class ProductoGS extends JFrame {
         Component verticalStrut = Box.createVerticalStrut(20);
         verticalBox.add(verticalStrut);
         
-        RoundedButton btnNewButton = new RoundedButton("New button");
-        btnNewButton.setFont(new Font("Unispace", Font.PLAIN, 11));
-        btnNewButton.setBackground(new Color(0, 0, 255)); // Blue button background
-        btnNewButton.setForeground(new Color(255, 255, 255)); // White text
-        verticalBox.add(btnNewButton);
+        btn_nuevo = new RoundedButton("New button");
+        btn_nuevo.setText("Nuevo");
+        btn_nuevo.setFont(new Font("Unispace", Font.PLAIN, 13));
+        btn_nuevo.setBackground(new Color(47, 131, 115)); // Blue button background
+        btn_nuevo.setForeground(new Color(255, 255, 255)); // White text
+        verticalBox.add(btn_nuevo);
         
         Component verticalStrut_1 = Box.createVerticalStrut(20);
         verticalBox.add(verticalStrut_1);
         
-        RoundedButton btnNewButton_1 = new RoundedButton("New button");
-        btnNewButton_1.setFont(new Font("Unispace", Font.PLAIN, 11));
-        btnNewButton_1.setBackground(new Color(0, 0, 255)); // Blue button background
-        btnNewButton_1.setForeground(new Color(255, 255, 255)); // White text
-        verticalBox.add(btnNewButton_1);
+        btn_editar = new RoundedButton("New button");
+        btn_editar.setText("Editar");
+        btn_editar.setFont(new Font("Unispace", Font.PLAIN, 13));
+        btn_editar.setBackground(new Color(137, 81, 142)); // Blue button background
+        btn_editar.setForeground(new Color(255, 255, 255)); // White text
+        verticalBox.add(btn_editar);
         
         Component verticalStrut_2 = Box.createVerticalStrut(20);
         verticalBox.add(verticalStrut_2);
         
-        RoundedButton btnNewButton_2 = new RoundedButton("New button");
-        btnNewButton_2.setFont(new Font("Unispace", Font.PLAIN, 11));
-        btnNewButton_2.setBackground(Color.decode("#0000FF"));
-        btnNewButton_2.setForeground(Color.decode("#FFFFFF"));
-        verticalBox.add(btnNewButton_2);
+        btn_guardar = new RoundedButton("New button");
+        btn_guardar.setText("Guardar");
+        btn_guardar.setFont(new Font("Unispace", Font.PLAIN, 13));
+        btn_guardar.setBackground(new Color(0, 176, 200));
+        btn_guardar.setForeground(Color.decode("#FFFFFF"));
+        verticalBox.add(btn_guardar);
         
         Component verticalStrut_3 = Box.createVerticalStrut(20);
         verticalBox.add(verticalStrut_3);
         
-        RoundedButton btnNewButton_3 = new RoundedButton("New button");
-        btnNewButton_3.setFont(new Font("Unispace", Font.PLAIN, 11));
-        btnNewButton_3.setBackground(Color.decode("#0000FF"));
-        btnNewButton_3.setForeground(Color.decode("#FFFFFF"));
-        verticalBox.add(btnNewButton_3);
+        btn_eliminar = new RoundedButton("New button");
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.setFont(new Font("Unispace", Font.PLAIN, 13));
+        btn_eliminar.setBackground(new Color(92, 53, 120));
+        btn_eliminar.setForeground(Color.decode("#FFFFFF"));
+        verticalBox.add(btn_eliminar);
         
         Box horizontalBox = Box.createHorizontalBox();
         contentPane.add(horizontalBox, BorderLayout.NORTH);
         
-        RoundedButton btnNewButton_4 = new RoundedButton("New button");
-        btnNewButton_4.setFont(new Font("Unispace", Font.PLAIN, 11));
-        btnNewButton_4.setBackground(Color.decode("#0000FF"));
-        btnNewButton_4.setForeground(Color.decode("#FFFFFF"));
-        horizontalBox.add(btnNewButton_4);
+        btn_atras = new RoundedButton("New button");
+        btn_atras.setText("Atras");
+        btn_atras.setFont(new Font("Unispace", Font.PLAIN, 15));
+        btn_atras.setBackground(new Color(136, 80, 141));
+        btn_atras.setForeground(Color.decode("#FFFFFF"));
+        horizontalBox.add(btn_atras);
         
         Component verticalStrut_4 = Box.createVerticalStrut(40);
         horizontalBox.add(verticalStrut_4);

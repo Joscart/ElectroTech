@@ -127,4 +127,11 @@ public class Proveedor implements Validable{
 		return telefono.matches(ER_TELEFONO);
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s", getRazonSocial());
+	}
+	
+	
+
 }

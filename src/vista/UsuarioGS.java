@@ -19,16 +19,20 @@ public class UsuarioGS extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTextField textFieldBuscar;
-    private JList<String> listUsuarios;
+    private JTextField txt_buscar;
+    private JList<String> lst_Usuarios;
     private DefaultListModel<String> listModel;
-    private JTextField textFieldUsuario;
-    private JPasswordField passwordFieldContrasena;
+    private JTextField txt_Usuario;
+    private JPasswordField passwordF_Contrasena;
     private UsuarioDAO usuarioDAO;
     public JButton btnAgregarUsuario; // Renombrado para mantener consistencia
 
     // Nuevo campo para la instancia de logic_Login
     private logic_Login loginLogic;
+    private JButton btnEditar;
+    private JButton btnEliminar;
+    private JButton btnAtras;
+    private JButton btnBuscar;
 
     /**
      * Create the frame.
@@ -38,24 +42,24 @@ public class UsuarioGS extends JFrame {
 
         setTitle("Gestión de Usuarios");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 500);
-        contentPane = new JPanel();
+        setBounds(100, 100, 519, 500);
+        contentPane =  new BackgroundPanel("src/recursos/imagenes/a.jpg");
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(new Color(255, 250, 240)); // Color pastel beige
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JPanel panelBuscar = new JPanel();
-        panelBuscar.setBounds(10, 10, 420, 50);
+        JPanel panelBuscar = new BackgroundPanel("src/recursos/imagenes/usuariosa.jpg");
+        panelBuscar.setBounds(10, 10, 490, 50);
         panelBuscar.setBackground(new Color(173, 216, 230)); // Color azul claro
         contentPane.add(panelBuscar);
         panelBuscar.setLayout(null);
 
-        JButton btnAtras = new JButton("Atrás");
-        btnAtras.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnAtras = new RoundedButton("Atrás");
+        btnAtras.setFont(new Font("Unispace", Font.BOLD, 15));
         btnAtras.setBounds(0, 10, 100, 30);
-        btnAtras.setBackground(new Color(240, 128, 128)); // Color coral
-        btnAtras.setForeground(Color.BLACK); // Texto negro
+        btnAtras.setBackground(new Color(0, 116, 109)); // Color coral
+        btnAtras.setForeground(new Color(255, 255, 255)); // Texto negro
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Cierra la ventana actual
@@ -64,23 +68,23 @@ public class UsuarioGS extends JFrame {
         panelBuscar.add(btnAtras);
 
         JLabel lblBuscar = new JLabel("Buscar:");
-        lblBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblBuscar.setBounds(110, 10, 60, 30);
+        lblBuscar.setFont(new Font("Unispace", Font.BOLD, 15));
+        lblBuscar.setBounds(110, 10, 71, 30);
         lblBuscar.setForeground(new Color(70, 130, 180)); // Color acero azul
         panelBuscar.add(lblBuscar);
 
-        textFieldBuscar = new JTextField();
-		textFieldBuscar.setBounds(173, 15, 200, 25);
-        textFieldBuscar.setBackground(Color.WHITE); // Fondo blanco para el campo de búsqueda
-        textFieldBuscar.setForeground(Color.BLACK); // Texto negro
-        panelBuscar.add(textFieldBuscar);
-        textFieldBuscar.setColumns(10);
+        txt_buscar = new JTextField();
+		txt_buscar.setBounds(191, 15, 182, 25);
+        txt_buscar.setBackground(Color.WHITE); // Fondo blanco para el campo de búsqueda
+        txt_buscar.setForeground(Color.BLACK); // Texto negro
+        panelBuscar.add(txt_buscar);
+        txt_buscar.setColumns(10);
 
-        JButton btnBuscar = new JButton("Buscar");
-        btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnBuscar.setBounds(390, 15, 100, 25);
+        btnBuscar = new RoundedButton("Buscar");
+        btnBuscar.setFont(new Font("Unispace", Font.BOLD, 15));
+        btnBuscar.setBounds(383, 13, 100, 25);
         btnBuscar.setBackground(new Color(100, 149, 237)); // Color azul pálido
-        btnBuscar.setForeground(Color.BLACK); // Texto negro
+        btnBuscar.setForeground(new Color(255, 255, 255)); // Texto negro
         btnBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 buscarUsuario();
@@ -88,17 +92,17 @@ public class UsuarioGS extends JFrame {
         });
         panelBuscar.add(btnBuscar);
 
-        JPanel panelBotones = new JPanel();
-        panelBotones.setBounds(10, 70, 420, 120);
+        JPanel panelBotones =  new BackgroundPanel("src/recursos/imagenes/usuariosm.jpg");
+        panelBotones.setBounds(10, 70, 490, 120);
         panelBotones.setBackground(new Color(173, 216, 230)); // Color azul claro
         contentPane.add(panelBotones);
         panelBotones.setLayout(null);
 
-        JButton btnEditar = new JButton("Editar");
-        btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnEditar.setBounds(10, 10, 180, 40);
-        btnEditar.setBackground(new Color(100, 149, 237)); // Color azul pálido
-        btnEditar.setForeground(Color.BLACK); // Texto negro
+        btnEditar = new RoundedButton("Editar");
+        btnEditar.setFont(new Font("Unispace", Font.BOLD, 15));
+        btnEditar.setBounds(23, 11, 180, 40);
+        btnEditar.setBackground(new Color(47, 36, 129)); // Color azul pálido
+        btnEditar.setForeground(new Color(255, 255, 255)); // Texto negro
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 editarUsuario();
@@ -106,18 +110,18 @@ public class UsuarioGS extends JFrame {
         });
         panelBotones.add(btnEditar);
 
-        btnAgregarUsuario = new JButton("Agregar Usuario"); // Renombrado
-        btnAgregarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnAgregarUsuario.setBounds(210, 10, 180, 40);
-        btnAgregarUsuario.setBackground(new Color(100, 149, 237)); // Color azul pálido
-        btnAgregarUsuario.setForeground(Color.BLACK); // Texto negro
+        btnAgregarUsuario = new RoundedButton("Agregar Usuario"); // Renombrado
+        btnAgregarUsuario.setFont(new Font("Unispace", Font.BOLD, 15));
+        btnAgregarUsuario.setBounds(275, 11, 180, 40);
+        btnAgregarUsuario.setBackground(new Color(6, 101, 165)); // Color azul pálido
+        btnAgregarUsuario.setForeground(new Color(255, 255, 255)); // Texto negro
         panelBotones.add(btnAgregarUsuario);
 
-        JButton btnEliminar = new JButton("Eliminar");
-        btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnEliminar.setBounds(210, 70, 180, 40);
-        btnEliminar.setBackground(new Color(255, 99, 71)); // Color tomate
-        btnEliminar.setForeground(Color.BLACK); // Texto negro
+        btnEliminar = new RoundedButton("Eliminar");
+        btnEliminar.setFont(new Font("Unispace", Font.BOLD, 15));
+        btnEliminar.setBounds(154, 69, 180, 40);
+        btnEliminar.setBackground(new Color(228, 36, 209)); // Color tomate
+        btnEliminar.setForeground(new Color(255, 255, 255)); // Texto negro
         btnEliminar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 eliminarUsuario();
@@ -126,41 +130,45 @@ public class UsuarioGS extends JFrame {
         panelBotones.add(btnEliminar);
 
         // JPanel para mostrar la lista de usuarios
-        JPanel panelLista = new JPanel();
-        panelLista.setBounds(10, 200, 420, 150);
+        JPanel panelLista = new BackgroundPanel("src/recursos/imagenes/usuariosb.jpg");
+        panelLista.setBounds(10, 200, 483, 150);
         panelLista.setBackground(new Color(173, 216, 230)); // Color azul claro
         contentPane.add(panelLista);
         panelLista.setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<>();
-        listUsuarios = new JList<>(listModel);
-        JScrollPane scrollPane = new JScrollPane(listUsuarios);
+        lst_Usuarios = new JList<>(listModel);
+        JScrollPane scrollPane = new JScrollPane(lst_Usuarios);
         panelLista.add(scrollPane, BorderLayout.CENTER);
 
         // JTextField y JPasswordField para editar usuario seleccionado
-        JPanel panelEdit = new JPanel();
-        panelEdit.setBounds(10, 360, 420, 50);
+        JPanel panelEdit = new BackgroundPanel("src/recursos/imagenes/usuariosm.jpg");
+        panelEdit.setBounds(10, 360, 483, 50);
         panelEdit.setBackground(new Color(173, 216, 230)); // Color azul claro
         contentPane.add(panelEdit);
         panelEdit.setLayout(new GridLayout(1, 4, 5, 5));
 
         JLabel lblUsuario = new JLabel("Usuario:");
+        lblUsuario.setForeground(new Color(255, 255, 255));
+        lblUsuario.setFont(new Font("Unispace", Font.BOLD, 15));
         panelEdit.add(lblUsuario);
 
-        textFieldUsuario = new JTextField();
-        panelEdit.add(textFieldUsuario);
+        txt_Usuario = new JTextField();
+        panelEdit.add(txt_Usuario);
 
         JLabel lblContrasena = new JLabel("Contraseña:");
+        lblContrasena.setForeground(new Color(255, 255, 255));
+        lblContrasena.setFont(new Font("Unispace", Font.BOLD, 15));
         panelEdit.add(lblContrasena);
 
-        passwordFieldContrasena = new JPasswordField();
-        panelEdit.add(passwordFieldContrasena);
+        passwordF_Contrasena = new JPasswordField();
+        panelEdit.add(passwordF_Contrasena);
 
         // Agregar listener para actualizar campos de edición cuando se seleccione un usuario
-        listUsuarios.addListSelectionListener(new ListSelectionListener() {
+        lst_Usuarios.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    String usuarioSeleccionado = listUsuarios.getSelectedValue();
+                    String usuarioSeleccionado = lst_Usuarios.getSelectedValue();
                     if (usuarioSeleccionado != null) {
                         cargarUsuario(usuarioSeleccionado);
                     }
@@ -191,7 +199,7 @@ public class UsuarioGS extends JFrame {
     }
 
     private void buscarUsuario() {
-        String buscar = textFieldBuscar.getText().trim();
+        String buscar = txt_buscar.getText().trim();
         if (buscar.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduce un usuario para buscar.");
             return;
@@ -210,25 +218,25 @@ public class UsuarioGS extends JFrame {
         List<Usuario> usuarios = usuarioDAO.getUsuarios();
         for (Usuario usuario : usuarios) {
             if (usuario.getNombre().equals(usuarioNombre)) {
-                textFieldUsuario.setText(usuario.getNombre());
-                passwordFieldContrasena.setText(usuario.getClave());
+                txt_Usuario.setText(usuario.getNombre());
+                passwordF_Contrasena.setText(usuario.getClave());
                 return;
             }
         }
         // Si el usuario no se encuentra, limpia los campos
-        textFieldUsuario.setText("");
-        passwordFieldContrasena.setText("");
+        txt_Usuario.setText("");
+        passwordF_Contrasena.setText("");
     }
 
     private void editarUsuario() {
-        String usuarioSeleccionado = listUsuarios.getSelectedValue();
+        String usuarioSeleccionado = lst_Usuarios.getSelectedValue();
         if (usuarioSeleccionado == null) {
             JOptionPane.showMessageDialog(this, "Selecciona un usuario para editar.");
             return;
         }
 
-        String nuevoUsuario = textFieldUsuario.getText().trim();
-        String nuevaContrasena = new String(passwordFieldContrasena.getPassword()).trim();
+        String nuevoUsuario = txt_Usuario.getText().trim();
+        String nuevaContrasena = new String(passwordF_Contrasena.getPassword()).trim();
 
         if (nuevoUsuario.isEmpty() || nuevaContrasena.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduce un nuevo usuario y contraseña.");
@@ -249,7 +257,7 @@ public class UsuarioGS extends JFrame {
     }
 
     private void eliminarUsuario() {
-        String usuarioSeleccionado = listUsuarios.getSelectedValue();
+        String usuarioSeleccionado = lst_Usuarios.getSelectedValue();
         if (usuarioSeleccionado == null) {
             JOptionPane.showMessageDialog(this, "Selecciona un usuario para eliminar.");
             return;

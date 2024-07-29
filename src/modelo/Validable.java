@@ -10,7 +10,7 @@ public interface Validable extends parametrizable<String>{
 	public final String ER_CLAVE = "^[a-zA-Z0-9._#@%-]{8,}$";
 	public final String ER_TELEFONO = "^[0-9]{7,10}$";
 	public final String ER_CODIGO = "^[0-9A-Z]{6}$";
-	public final String ER_RAZON_SOCIAL = "^[a-zA-Z]+[a-zA-Z ]*$";
+	public final String ER_RAZON_SOCIAL = "^[a-zA-Z]+[a-zA-Z .]*$";
 	public final String ER_DIRECCION = "^[a-zA-Z0-9 ]{,100}$";
 	public final String ER_DESCRIPCION = "^[a-zA-Z0-9 ]{1,200}$";
 	

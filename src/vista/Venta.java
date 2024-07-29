@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import controlador.logic_Venta;
+import modelo.Producto;
+
 import java.awt.BorderLayout;
 import javax.swing.JList;
 import javax.swing.Box;
@@ -16,12 +18,23 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JSpinner;
+import java.awt.Font;
 
 public class Venta extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     public logic_Venta logic;
+    public JButton btn_eliminar;
+    private JLabel lblNewLabel;
+    public JButton btn_agregar;
+    public JButton btn_atras;
+    public JSpinner spn_cantidad;
+    public JList<Producto> lst_productos;
+    public ProductoVS pn_productovs;
+    public JLabel lbl_total;
+    public JLabel lbl_numProductos;
+    public RoundedButton btn_venta;
 
     /**
      * Launch the application.
@@ -45,31 +58,32 @@ public class Venta extends JFrame {
     public Venta() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 570, 386);
-        contentPane= new BackgroundPanel("src/recursos/imagenes/productosVS.jpg");
+        contentPane= new BackgroundPanel("src/recursos/imagenes/venta.jpg");
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(new Color(230, 230, 250)); // Light blue background
 
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
         
-        JPanel panel = new JPanel();
+        JPanel panel = new BackgroundPanel("src/recursos/imagenes/venta.jpg");
         panel.setBackground(new Color(230, 230, 250)); // Lavender background
         contentPane.add(panel, BorderLayout.EAST);
         GridBagLayout gbl_panel = new GridBagLayout();
         gbl_panel.columnWidths = new int[]{129, 0};
-        gbl_panel.rowHeights = new int[]{27, 32, 0, 27, 0};
+        gbl_panel.rowHeights = new int[]{27, 32, 0, 0, 0, 0, 0, 0, 27, 0};
         gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-        gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+        gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
         panel.setLayout(gbl_panel);
         
-        JButton btnAgregar = new JButton("Agregar");
-        btnAgregar.setBackground(new Color(255, 255, 255)); // White background
-        btnAgregar.setForeground(new Color(0, 0, 0)); // Black text
+        btn_agregar = new RoundedButton("Agregar");
+        btn_agregar.setFont(new Font("Unispace", Font.PLAIN, 15));
+        btn_agregar.setBackground(new Color(98, 180, 146)); // White background
+        btn_agregar.setForeground(new Color(0, 0, 0)); // Black text
         GridBagConstraints gbc_btnAgregar = new GridBagConstraints();
         gbc_btnAgregar.insets = new Insets(0, 0, 5, 0);
         gbc_btnAgregar.gridx = 0;
         gbc_btnAgregar.gridy = 0;
-        panel.add(btnAgregar, gbc_btnAgregar);
+        panel.add(btn_agregar, gbc_btnAgregar);
         
         Box horizontalBox_1 = Box.createHorizontalBox();
         GridBagConstraints gbc_horizontalBox_1 = new GridBagConstraints();
@@ -78,44 +92,68 @@ public class Venta extends JFrame {
         gbc_horizontalBox_1.gridy = 1;
         panel.add(horizontalBox_1, gbc_horizontalBox_1);
         
-        JLabel lblNewLabel = new JLabel("New label");
-        horizontalBox_1.add(lblNewLabel);
+        lblNewLabel = new JLabel("Cantidad");
+        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
+        gbc_lblNewLabel.gridx = 0;
+        gbc_lblNewLabel.gridy = 2;
+        panel.add(lblNewLabel, gbc_lblNewLabel);
+        lblNewLabel.setFont(new Font("Unispace", Font.PLAIN, 15));
         
-        JSpinner spinner = new JSpinner();
-        horizontalBox_1.add(spinner);
+        spn_cantidad = new JSpinner();
+        GridBagConstraints gbc_spn_cantidad = new GridBagConstraints();
+        gbc_spn_cantidad.insets = new Insets(0, 0, 5, 0);
+        gbc_spn_cantidad.gridx = 0;
+        gbc_spn_cantidad.gridy = 3;
+        panel.add(spn_cantidad, gbc_spn_cantidad);
+        spn_cantidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
         
-        JButton btnEliminar = new JButton("Eliminar");
-        btnEliminar.setBackground(new Color(255, 255, 255)); // White background
-        btnEliminar.setForeground(new Color(0, 0, 0)); // Black text
-        GridBagConstraints gbc_btnEliminar = new GridBagConstraints();
-        gbc_btnEliminar.insets = new Insets(0, 0, 5, 0);
-        gbc_btnEliminar.gridx = 0;
-        gbc_btnEliminar.gridy = 2;
-        panel.add(btnEliminar, gbc_btnEliminar);
+        btn_eliminar = new RoundedButton("Eliminar");
+        btn_eliminar.setFont(new Font("Unispace", Font.PLAIN, 15));
+        btn_eliminar.setBackground(new Color(116, 47, 106)); // White background
+        btn_eliminar.setForeground(new Color(0, 0, 0)); // Black text
+        GridBagConstraints gbc_btn_Eliminar = new GridBagConstraints();
+        gbc_btn_Eliminar.insets = new Insets(0, 0, 5, 0);
+        gbc_btn_Eliminar.gridx = 0;
+        gbc_btn_Eliminar.gridy = 5;
+        panel.add(btn_eliminar, gbc_btn_Eliminar);
         
-        ProductoVS panel_1 = new ProductoVS();
-        contentPane.add(panel_1, BorderLayout.WEST);
+        btn_venta = new RoundedButton("Terminar venta");
+        btn_venta.setForeground(Color.WHITE);
+        btn_venta.setFont(new Font("Unispace", Font.PLAIN, 15));
+        btn_venta.setBackground(new Color(116, 47, 106));
+        GridBagConstraints gbc_btn_eliminar_1 = new GridBagConstraints();
+        gbc_btn_eliminar_1.insets = new Insets(0, 0, 5, 0);
+        gbc_btn_eliminar_1.gridx = 0;
+        gbc_btn_eliminar_1.gridy = 7;
+        panel.add(btn_venta, gbc_btn_eliminar_1);
         
-        JList list = new JList();
-        contentPane.add(list, BorderLayout.CENTER);
+        pn_productovs = new ProductoVS();
+        contentPane.add(pn_productovs, BorderLayout.WEST);
         
-        JPanel panel_3 = new JPanel();
+        lst_productos = new JList<>();
+        contentPane.add(lst_productos, BorderLayout.CENTER);
+        
+        JPanel panel_3 = new BackgroundPanel("src/recursos/imagenes/vantaabajo.jpg");
         panel_3.setBackground(new Color(240, 248, 255)); // Light blue background
         contentPane.add(panel_3, BorderLayout.SOUTH);
         
-        JLabel lblNumProductos = new JLabel("Num Productos:");
-        panel_3.add(lblNumProductos);
+        lbl_numProductos = new RoundedLabel("Num Productos:", new Color(98, 180, 146));
+        lbl_numProductos.setFont(new Font("Unispace", Font.BOLD, 13));
+        panel_3.add(lbl_numProductos);
         
-        JLabel lblTotal = new JLabel("Total:");
-        panel_3.add(lblTotal);
+        lbl_total = new RoundedLabel("Total:",new Color(98, 180, 146));
+        lbl_total.setFont(new Font("Unispace", Font.BOLD, 13));
+        panel_3.add(lbl_total);
         
         Box horizontalBox = Box.createHorizontalBox();
         contentPane.add(horizontalBox, BorderLayout.NORTH);
         
-        JButton btnAtras = new JButton("Atras");
-        btnAtras.setBackground(new Color(255, 255, 255)); // White background
-        btnAtras.setForeground(new Color(0, 0, 0)); // Black text
-        horizontalBox.add(btnAtras);
+        btn_atras = new RoundedButton("Atras");
+        btn_atras.setFont(new Font("Unispace", Font.PLAIN, 15));
+        btn_atras.setBackground(new Color(163, 109, 115)); // White background
+        btn_atras.setForeground(new Color(0, 0, 0)); // Black text
+        horizontalBox.add(btn_atras);
         
         Component verticalStrut = Box.createVerticalStrut(40);
         horizontalBox.add(verticalStrut);

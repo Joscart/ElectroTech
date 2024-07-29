@@ -15,6 +15,7 @@ public class logic_Login {
     private Login loginView;
     private UsuarioGS usuarioGSView;
     private UsuarioDAO usuarioDAO;
+    private Usuario usuario;
 
     public logic_Login(Login loginView) {
         this.loginView = loginView;
@@ -49,6 +50,7 @@ public class logic_Login {
             // Abrir ventana Menu y cerrar ventana Login
             Menu menu = new Menu();
             menu.setVisible(true);
+            loginView.isLogin = true;
             loginView.dispose();
         } else {
             loginView.textFieldUsername.setBackground(Color.RED);
@@ -56,12 +58,18 @@ public class logic_Login {
             JOptionPane.showMessageDialog(loginView, "Usuario o contraseña incorrectos.");
         }
     }
+    
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
     private boolean verificarUsuario(String usuario, String contrasena) {
         Usuario user = new Usuario();
         user.setNombre(usuario);
+        user.setCorreo(usuario);
         user.setClave(contrasena);  // Se asegurará de codificar la clave dentro de la clase Usuario
         Usuario autenticado = usuarioDAO.iniciarSesion(user);
+        this.usuario = autenticado;
         return autenticado != null;
     }
 

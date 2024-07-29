@@ -17,6 +17,10 @@ public class Menu extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+    public RoundedButton btnVentana;
+    public RoundedButton btnGestionProducto;
+    public RoundedButton btnGestionUsuario;
+    public RoundedButton btnGestionProveedores;
 
     /**
      * Launch the application.
@@ -59,7 +63,7 @@ public class Menu extends JFrame {
         lblTitle.setForeground(Color.decode("#3a7eb5"));
         contentPane.add(lblTitle);
 
-        RoundedButton btnVentana = new RoundedButton("VENTA");
+        btnVentana = new RoundedButton("VENTA");
         btnVentana.setFont(new Font("Unispace", Font.BOLD, 18));
         btnVentana.setBounds(50, 70, 350, 40);
         btnVentana.setBackground(Color.decode("#8b4d86"));
@@ -67,13 +71,15 @@ public class Menu extends JFrame {
         btnVentana.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Ventana clicked");
+                Venta venta = new Venta();
+                venta.setVisible(true);
                 btnVentana.setBackground(Color.GREEN);
                 btnVentana.setForeground(Color.BLACK); // Mantener el texto visible
             }
         });
         contentPane.add(btnVentana);
 
-        RoundedButton btnGestionProducto = new RoundedButton("GESTIÓN PRODUCTO");
+        btnGestionProducto = new RoundedButton("GESTIÓN PRODUCTO");
         btnGestionProducto.setFont(new Font("Unispace", Font.BOLD, 18));
         btnGestionProducto.setBounds(50, 120, 350, 40);
         btnGestionProducto.setBackground(Color.decode("#3a84b4"));
@@ -81,13 +87,15 @@ public class Menu extends JFrame {
         btnGestionProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Gestión Producto clicked");
+                ProductoGS productoGS = new ProductoGS();
+                productoGS.setVisible(true);
                 btnGestionProducto.setBackground(Color.GREEN);
                 btnGestionProducto.setForeground(Color.BLACK); // Mantener el texto visible
             }
         });
         contentPane.add(btnGestionProducto);
 
-        RoundedButton btnGestionUsuario = new RoundedButton("GESTIÓN USUARIO");
+        btnGestionUsuario = new RoundedButton("GESTIÓN USUARIO");
         btnGestionUsuario.setFont(new Font("Unispace", Font.BOLD, 18));
         btnGestionUsuario.setBounds(50, 170, 350, 40);
         btnGestionUsuario.setBackground(Color.decode("#7cb461"));
@@ -105,7 +113,7 @@ public class Menu extends JFrame {
         });
         contentPane.add(btnGestionUsuario);
 
-        RoundedButton btnGestionProveedores = new RoundedButton("GESTIÓN PROVEEDORES");
+        btnGestionProveedores = new RoundedButton("GESTIÓN PROVEEDORES");
         btnGestionProveedores.setFont(new Font("Unispace", Font.BOLD, 18));
         btnGestionProveedores.setBounds(50, 220, 350, 40);
         btnGestionProveedores.setBackground(Color.decode("#b8d69e"));
@@ -113,6 +121,8 @@ public class Menu extends JFrame {
         btnGestionProveedores.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Gestión Proveedores clicked");
+                ProveedorGS proveedorGS = new ProveedorGS();
+                proveedorGS.setVisible(true);
                 btnGestionProveedores.setBackground(Color.GREEN);
                 btnGestionProveedores.setForeground(Color.BLACK); // Mantener el texto visible
             }

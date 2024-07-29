@@ -24,6 +24,7 @@ public class Login extends JFrame {
     public JButton btn_test;
     public JTextField textFieldUsername;
     public JPasswordField passwordField;
+    public boolean isLogin;
 
     /**
      * Launch the application.

@@ -30,7 +30,7 @@ public class logic_ProductoVS implements KeyListener, ListSelectionListener{
 		lb.lst_productos.addListSelectionListener(this);
 	}
 	
-	private void cargarProductos() {
+	public void cargarProductos() {
 		productos = pdao.getProductos();
 		lb.lst_productos.setListData(productos.toArray(new Producto[0]));
 	}
