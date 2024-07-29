@@ -98,4 +98,11 @@ public class Producto implements Validable{
 		return precio > 0;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s", getNombre());
+	}
+	
+	
+
 }
